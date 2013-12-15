@@ -46,6 +46,10 @@ module Delphi
       end
     end
 
+    def bds
+      File.join(Delphi::Environment.instance.bin_dir, 'bds.exe')
+    end
+
     private
 
     FMT_COMPILE = 'msbuild.exe /nologo /t:%s /p:Config=%s;Platform=%s "%s"'

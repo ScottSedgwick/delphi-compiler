@@ -21,5 +21,9 @@ module Delphi
       output = @compiler.compile_rc(@rcfile)
       fail "Error compiling #{@rcfile}:\n#{output}" if @haltOnFail && !$CHILD_STATUS
     end
+
+    def output
+      File.join(File.dirname(@rcfile), File.basename(@rcfile, '.rc') + '.res')
+    end
   end
 end
