@@ -9,7 +9,7 @@ module Delphi
   # It is accessed via the compile methods of the Project,
   # GroupProj and Resource classes
   class Compiler
-    attr_accessor :fail_on_hints_and_warnings
+    attr_accessor :fail_on_hints_and_warnings, :fail_on_errors
 
     # You need to pass the Delphi target version to this class.
     # If you use the Project or GroupProj classes, they will figure
@@ -17,6 +17,7 @@ module Delphi
     def initialize(project_version, fail_on_hints_and_warnings = true)
       Delphi::Environment.instance.configure(project_version)
       @fail_on_hints_and_warnings = fail_on_hints_and_warnings
+      @fail_on_errors = true
     end
 
     # Compile a Project (dproj file)
@@ -57,9 +58,13 @@ module Delphi
     FMT_COMPILE_RC = 'brcc32.exe "%s"'
 
     def check_for_failure(output)
-      if found_errors?(output) || fail_due_to_hints_or_warnings?(output)
+      if @fail_on_errors && found_errors?(output) 
         puts output
-        fail "Compiling #{cmd} failed. Hints and Warnings found."
+        fail "Compilation failed. Errors found."
+      end
+      if fail_due_to_hints_or_warnings?(output)
+        puts output
+        fail "Compilation failed. Hints and Warnings found."
       end
       output
     end
