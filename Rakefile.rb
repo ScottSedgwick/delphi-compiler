@@ -1,7 +1,5 @@
 # encoding: UTF-8
 
-$LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
-
 require 'rake/testtask'
 require 'delphi'
 
@@ -25,30 +23,33 @@ end
 
 ######################################################################################
 # Example tasks to exercise the delphi library.
-task :build_prereq1 do
-  puts 'Build prerequisite 1'
-end
+namespace :example do
+  task :prereq1 do
+    puts 'Build prerequisite 1'
+  end
 
-task :build_prereq2 do
-  puts 'Build prerequisite 2'
-end
+  task :prereq2 do
+    puts 'Build prerequisite 2'
+  end
 
-task :build_prereq3 do
-  puts 'Build prerequisite 3'
-end
+  task :prereq3 do
+    puts 'Build prerequisite 3'
+  end
 
-desc 'Compile test project'
-delphi :testd, 'C:\dev\delphi-compiler\test\test.dproj', 'Win32', 'Debug' => :build_prereq1 do |p|
-  puts "Finished building #{p.output}"
-end
-task testd: :build_prereq2
+  desc 'Compile test project'
+  delphi :delphiproj, 'C:\dev\delphi-compiler\test\test.dproj', 'Win32', 'Debug' => 'example:prereq1' do |p|
+    puts "Finished building #{p.output}"
+  end
+  task delphiproj: 'example:prereq2'
 
-desc 'Compile unit tests'
-delphi :unitd, 'C:\dev\delphi-compiler\test\Test\testTests.dproj' => :build_prereq1 do |p|
-  puts "Finished building #{p.output}"
-end
+  desc 'Compile unit tests'
+  delphi :testproj, 'C:\dev\delphi-compiler\test\Test\testTests.dproj' => 'example:prereq1' do |p|
+    puts "Finished building #{p.output}"
+  end
 
-dunit :unit_tests, unitd: :build_prereq2 do
-  puts 'Finished Unit Testing'
+  desc 'Run unit tests'
+  dunit :unit_tests, 'example:testproj' => 'example:prereq2' do
+    puts 'Finished Unit Testing'
+  end
+  task unit_tests: 'example:prereq3'
 end
-task unit_tests: :build_prereq3

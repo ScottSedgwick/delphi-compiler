@@ -10,17 +10,26 @@ Gem::Specification.new do |s|
   s.email       = 'scott.sedgwick@gmail.com'
   s.files       = [
     'delphi-compiler.gemspec',
-    'Rakefile.rb',
+    'rakefile.rb',
     'version.rb',
-    'lib/delphi-compiler.rb',
-    'lib/delphi-compiler/compiler.rb',
-    'lib/delphi-compiler/environment.rb',
-    'lib/delphi-compiler/groupproj.rb',
-    'lib/delphi-compiler/project.rb',
-    'lib/delphi-compiler/resource.rb',
-    'lib/delphi-compiler/versions.rb',
+    'lib/delphi.rb',
+    'lib/delphi/compiler.rb',
+    'lib/delphi/dsl.rb',
+    'lib/delphi/environment.rb',
+    'lib/delphi/groupproj.rb',
+    'lib/delphi/project.rb',
+    'lib/delphi/resource.rb',
+    'lib/delphi/versions.rb',
+    'test/MyClass.pas',
     'test/test.dproj',
-    'test/test_project.rb'
+    'test/test.dpr',
+    'test/test.res',
+    'test/test_project.rb',
+    'test/TestGroup.groupproj',
+    'test/Test/TestMyClass.pas',
+    'test/Test/testTests.dpr',
+    'test/Test/testTests.dproj',
+    'test/Test/testTests.res'
   ]
   s.homepage    = 'http://rubygems.org/gems/delphi-compiler'
   s.license     = 'MIT'
