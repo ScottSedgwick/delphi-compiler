@@ -51,7 +51,7 @@ def delphi(*args)
   end
   Rake::Task[sym].sources = dproj
 
-  CLEAN.include(proj.output)
+  CLOBBER.include(proj.output)
 end
 
 def dunit(sym, prereqs)
