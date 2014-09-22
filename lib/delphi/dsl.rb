@@ -49,7 +49,7 @@ def delphi(*args)
     proj.compile
     yield proj if block_given?
   end
-  Rake::Task[sym].sources = dproj
+  Rake::Task[sym].sources = proj
 
   CLOBBER.include(proj.output)
 end
@@ -64,7 +64,7 @@ def dunit(sym, prereqs)
   end
   prereqs = [prereqs, compile_sym].flatten
   task sym => prereqs do
-    exe = Delphi::Project.new(Rake::Task[compile_sym].sources).output
+    exe = Rake::Task[compile_sym].sources.output
     Dir.chdir(File.dirname(exe)) do
       system(File.basename(exe))
       fail 'Unit tests failed' unless $CHILD_STATUS.to_i == 0

@@ -120,7 +120,7 @@ module Delphi
     end
 
     def subst_path(path)
-      path.gsub(/\./, File.dirname(@dproj)).sub('$(Platform)', platform).sub('$(Config)', config)
+      File.join(File.dirname(@dproj), path.sub('$(Platform)', platform).sub('$(Config)', config))
     end
   end
 end
