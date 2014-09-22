@@ -1,6 +1,9 @@
 # encoding: UTF-8
 
+$LOAD_PATH << File.join(File.dirname(__FILE__), 'lib')
+
 require 'rake/testtask'
+require 'delphi'
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
@@ -20,19 +23,32 @@ task :install do
   system("gem install ./delphi-compiler-#{VERSION}.gem")
 end
 
-desc 'Compile Custom Sound (local)'
-task :csl do
-  lib = File.join(File.dirname(__FILE__), 'lib')
-  puts lib
-  $LOAD_PATH.unshift(lib)
-  require 'delphi-compiler'
-  cs = Delphi::Project.new('c:/dev/customsound/source/CustomSound.dproj')
-  cs.compile
+######################################################################################
+# Example tasks to exercise the delphi library.
+task :build_prereq1 do
+  puts 'Build prerequisite 1'
 end
 
-desc 'Compile Custom Sound (gem)'
-task :csg do
-  require 'delphi-compiler'
-  cs = Delphi::Project.new('c:/dev/customsound/source/CustomSound.dproj')
-  cs.compile
+task :build_prereq2 do
+  puts 'Build prerequisite 2'
 end
+
+task :build_prereq3 do
+  puts 'Build prerequisite 3'
+end
+
+desc 'Compile test project'
+delphi :testd, 'C:\dev\delphi-compiler\test\test.dproj', 'Win32', 'Debug' => :build_prereq1 do |p|
+  puts "Finished building #{p.output}"
+end
+task testd: :build_prereq2
+
+desc 'Compile unit tests'
+delphi :unitd, 'C:\dev\delphi-compiler\test\Test\testTests.dproj' => :build_prereq1 do |p|
+  puts "Finished building #{p.output}"
+end
+
+dunit :unit_tests, unitd: :build_prereq2 do
+  puts 'Finished Unit Testing'
+end
+task unit_tests: :build_prereq3

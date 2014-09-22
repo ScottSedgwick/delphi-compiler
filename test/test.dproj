@@ -1,19 +1,36 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{85d6c998-c84b-4f2b-811e-843dee0c0f76}</ProjectGuid>
-        <MainSource>CustomSound.dpr</MainSource>
-        <Configuration Condition=" '$(Configuration)' == '' ">Release_Versioned</Configuration>
-        <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <DCC_DependencyCheckOutputName>CustomSound.exe</DCC_DependencyCheckOutputName>
-        <FrameworkType>VCL</FrameworkType>
-        <ProjectVersion>14.6</ProjectVersion>
+        <ProjectGuid>{D2291E58-4A1F-48B4-9304-B9D39E066E46}</ProjectGuid>
+        <ProjectVersion>16.0</ProjectVersion>
+        <FrameworkType>None</FrameworkType>
+        <MainSource>test.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
-        <AppType>Application</AppType>
+        <AppType>Console</AppType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Android' and '$(Base)'=='true') or '$(Base_Android)'!=''">
+        <Base_Android>true</Base_Android>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='iOSDevice' and '$(Base)'=='true') or '$(Base_iOSDevice)'!=''">
+        <Base_iOSDevice>true</Base_iOSDevice>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='iOSSimulator' and '$(Base)'=='true') or '$(Base_iOSSimulator)'!=''">
+        <Base_iOSSimulator>true</Base_iOSSimulator>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='OSX32' and '$(Base)'=='true') or '$(Base_OSX32)'!=''">
+        <Base_OSX32>true</Base_OSX32>
+        <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
@@ -26,7 +43,7 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
         <Cfg_1>true</Cfg_1>
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
@@ -37,940 +54,458 @@
         <Cfg_1>true</Cfg_1>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release_US' or '$(Cfg_5)'!=''">
-        <Cfg_5>true</Cfg_5>
-        <CfgParent>Cfg_1</CfgParent>
-        <Cfg_1>true</Cfg_1>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_5)'=='true') or '$(Cfg_5_Win32)'!=''">
-        <Cfg_5_Win32>true</Cfg_5_Win32>
-        <CfgParent>Cfg_5</CfgParent>
-        <Cfg_5>true</Cfg_5>
-        <Cfg_1>true</Cfg_1>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+    <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
-        <Cfg_2_Win32>true</Cfg_2_Win32>
-        <CfgParent>Cfg_2</CfgParent>
-        <Cfg_2>true</Cfg_2>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Profile' or '$(Cfg_3)'!=''">
-        <Cfg_3>true</Cfg_3>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_3)'=='true') or '$(Cfg_3_Win32)'!=''">
-        <Cfg_3_Win32>true</Cfg_3_Win32>
-        <CfgParent>Cfg_3</CfgParent>
-        <Cfg_3>true</Cfg_3>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release_Versioned' or '$(Cfg_4)'!=''">
-        <Cfg_4>true</Cfg_4>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_4)'=='true') or '$(Cfg_4_Win32)'!=''">
-        <Cfg_4_Win32>true</Cfg_4_Win32>
-        <CfgParent>Cfg_4</CfgParent>
-        <Cfg_4>true</Cfg_4>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_Define>CODESITE4;USE_MADEXCEPT_CSX;CSEXPRESS;$(DCC_Define)</DCC_Define>
-        <VerInfo_Keys>CompanyName=Cochlear Limited;FileDescription=Custom Sound;FileVersion=3.3.15.2727;InternalName=Custom Sound 4.0;LegalCopyright=Copyright (c) 2012 Cochlear Limited.;LegalTrademarks=Nucleus is a registered trademark of Cochlear Limited. Freedom, Contour, Contour Advance, Softip, ESPrit, SPrint, Custom Sound, ACE, SmartSound, Beam, Whisper, NRT, and AutoNRT are trademarks of Cochlear Limited. ADRO is a trademark of Dynamic Hearing Pty Ltd. Microsoft and Windows are registered trademarks of Microsoft Corporation. Pentium is a registered trademark of Intel Corporation.;OriginalFilename=CustomSound.exe;ProductName=Custom Sound;ProductVersion=4.0;SpecialBuild=</VerInfo_Keys>
-        <PreBuildEvent><![CDATA["$(BDS)\bin\brcc32.exe" "$(INPUTNAME)_version.rc"
-$(PreBuildEvent)]]></PreBuildEvent>
-        <Icon_MainIcon>CustomSound.ico</Icon_MainIcon>
-        <DCC_DcuOutput>.\obj</DCC_DcuOutput>
-        <DCC_UnitSearchPath>.\3rdPartyComponents\TNTUnicodeControls;.\Persistence Model\Map Compiler\DIL;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools;.\Persistence Model\Tools\Binary To String Format;.\Programming Interface Model;.\Setup;.\Setup\Common\Logger;.\Setup\Common\VersionInfo;.\Software Registration;.\User Interface;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\Source;.\3rdPartyComponents\PascalMock;.\3rdPartyComponents\VirtualTreeview\Source;.\3rdPartyComponents\Abbrevia\source;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\ComLib;.\3rdPartyComponents\Developer Express Inc\ExpressBars\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressCommon Library\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressCore Library\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressDataController\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressDocking Library\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressEditors Library\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressExport Library\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressGDI+ Library\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressLibrary\Sources;.\3rdPartyComponents\Developer Express Inc\ExpressVerticalGrid\Sources;.\3rdPartyComponents\Developer Express Inc\XP Theme Manager\Sources;.\cochlear controls;.\3rdPartyComponents\PngComponents\Source;.\3rdPartyComponents\Storage\Source;.\3rdPartyComponents\ToneGen\Source;.\3rdPartyComponents\TeeChart\TeeChart2012;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\ThreadedTimer;C:\Program Files (x86)\Raize\CS5\Lib\RS-XE2\Win32;.\3rdPartyComponents\CodeSiteEx\source;.\3rdPartyComponents\FastMM;.\3rdPartyComponents\CodeSite\Indy;.\3rdPartyComponents\superobject;.\CDM-Delphi\CDM Libraries\CDM Core\Application;.\CDM-Delphi\CDM Libraries\CDM Core\Core;.\CDM-Delphi\CDM Libraries\CDM Core\Device;.\CDM-Delphi\CDM Libraries\CDM Core\Person;.\CDM-Delphi\CDM Libraries\CDM Persistence;.\CDM-Delphi\CDM Libraries\CDM Core\Relationships;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <Manifest_File>None</Manifest_File>
-        <VerInfo_MinorVer>3</VerInfo_MinorVer>
-        <VerInfo_MajorVer>3</VerInfo_MajorVer>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;Winapi;System.Win;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Build>2727</VerInfo_Build>
-        <VerInfo_Release>15</VerInfo_Release>
-        <VerInfo_Locale>3081</VerInfo_Locale>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
+        <SanitizedProjectName>test</SanitizedProjectName>
+        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
+        <DCC_E>false</DCC_E>
+        <DCC_N>false</DCC_N>
+        <DCC_S>false</DCC_S>
+        <DCC_F>false</DCC_F>
+        <DCC_K>false</DCC_K>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Android)'!=''">
+        <Android_LauncherIcon96>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_96x96.png</Android_LauncherIcon96>
+        <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;fmx;IndySystem;tethering;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapProviderClient;DbxCommonDriver;dbxcds;fmxFireDAC;CustomIPTransport;dsnap;IndyIPServer;IndyCore;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;dsnapxml;bindcompfmx;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;xmlrtl;DataSnapNativeClient;ibxpress;IndyProtocols;FireDACCommonDriver;bindengine;bindcompdbx;soaprtl;FMXTee;emsclient;FireDAC;inet;soapmidas;RESTComponents;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+        <Android_SplashImage640>$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png</Android_SplashImage640>
+        <Android_SplashImage426>$(BDS)\bin\Artwork\Android\FM_SplashImage_426x320.png</Android_SplashImage426>
+        <Android_LauncherIcon144>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_144x144.png</Android_LauncherIcon144>
+        <Android_LauncherIcon72>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_72x72.png</Android_LauncherIcon72>
+        <Android_SplashImage960>$(BDS)\bin\Artwork\Android\FM_SplashImage_960x720.png</Android_SplashImage960>
+        <Android_SplashImage470>$(BDS)\bin\Artwork\Android\FM_SplashImage_470x320.png</Android_SplashImage470>
+        <Android_LauncherIcon36>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png</Android_LauncherIcon36>
+        <Android_LauncherIcon48>$(BDS)\bin\Artwork\Android\FM_LauncherIcon_48x48.png</Android_LauncherIcon48>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_iOSDevice)'!=''">
+        <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;fmx;IndySystem;tethering;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapProviderClient;DbxCommonDriver;dbxcds;fmxFireDAC;CustomIPTransport;dsnap;IndyIPServer;fmxase;IndyCore;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;dsnapxml;bindcompfmx;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;xmlrtl;DataSnapNativeClient;ibxpress;IndyProtocols;FireDACCommonDriver;bindengine;bindcompdbx;soaprtl;FMXTee;emsclient;FireDAC;inet;soapmidas;RESTComponents;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_iOSSimulator)'!=''">
+        <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;fmx;IndySystem;tethering;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapProviderClient;DbxCommonDriver;dbxcds;fmxFireDAC;CustomIPTransport;dsnap;IndyIPServer;fmxase;IndyCore;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;dsnapxml;bindcompfmx;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;xmlrtl;DataSnapNativeClient;ibxpress;IndyProtocols;FireDACCommonDriver;bindengine;bindcompdbx;soaprtl;FMXTee;emsclient;FireDAC;inet;soapmidas;RESTComponents;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_OSX32)'!=''">
+        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
+        <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;FireDACPgDriver;fmx;IndySystem;tethering;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;DataSnapProviderClient;DbxCommonDriver;dbxcds;fmxFireDAC;DBXOracleDriver;CustomIPTransport;dsnap;IndyIPServer;fmxase;IndyCore;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;dsnapxml;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;xmlrtl;DataSnapNativeClient;ibxpress;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindengine;bindcompdbx;soaprtl;FMXTee;emsclient;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;DataSnapServerMidas;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_Namespace>Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
-        <Icon_MainIcon>CustomSound.ico</Icon_MainIcon>
-        <Debugger_DebugSourcePath>C:\Development\FittingSoftware\Source\Trunk\Capability Model;C:\Perforce\NCharlton_Main_Dev\FittingSoftware\Source\Trunk\Database Access Layer\General\cochUnits\Clinic\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
+        <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;FireDACPgDriver;fmx;IndySystem;frxe21;TeeDB;tethering;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;frx21;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;vcldb;vcldsnap;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;WebExpert10;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;CodeSiteExpressPkg;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;adortl;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;frxTee21;Tee;DBXOdbcDriver;frxDB21;vclFireDAC;xmlrtl;DataSnapNativeClient;svnui;ibxpress;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindengine;vclactnband;bindcompdbx;soaprtl;FMXTee;TeeUI;bindcompvcl;vclie;FireDACADSDriver;vcltouch;emsclient;VCLRESTComponents;FireDACMSSQLDriver;FireDAC;VclSmp;DBXInformixDriver;Intraweb;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=Cochlear Limited;FileDescription=Custom Sound;FileVersion=4.0.0.0;InternalName=Custom Sound 4.0;LegalCopyright=Copyright (c) 2012 Cochlear Limited.;LegalTrademarks=Nucleus is a registered trademark of Cochlear Limited. Freedom, Contour, Contour Advance, Softip, ESPrit, SPrint, Custom Sound, ACE, SmartSound, Beam, Whisper, NRT, and AutoNRT are trademarks of Cochlear Limited. ADRO is a trademark of Dynamic Hearing Pty Ltd. Microsoft and Windows are registered trademarks of Microsoft Corporation. Pentium is a registered trademark of Intel Corporation.;OriginalFilename=CustomSound.exe;ProductName=Custom Sound;ProductVersion=4.0;SpecialBuild=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <Icon_MainIcon>CustomSound.ico</Icon_MainIcon>
+        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
+        <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;FireDACPgDriver;fmx;IndySystem;TeeDB;tethering;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;vcldb;vcldsnap;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;adortl;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;Tee;DBXOdbcDriver;vclFireDAC;xmlrtl;DataSnapNativeClient;ibxpress;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindengine;vclactnband;bindcompdbx;soaprtl;FMXTee;TeeUI;bindcompvcl;vclie;FireDACADSDriver;vcltouch;emsclient;VCLRESTComponents;FireDACMSSQLDriver;FireDAC;VclSmp;DBXInformixDriver;Intraweb;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
-        <Version>7.0</Version>
-        <DCC_WriteableConstants>True</DCC_WriteableConstants>
-        <DCC_IntegerOverflowCheck>True</DCC_IntegerOverflowCheck>
-        <DCC_RangeChecking>True</DCC_RangeChecking>
-        <DCC_GenerateStackFrames>True</DCC_GenerateStackFrames>
-        <DCC_MapFile>3</DCC_MapFile>
-        <DCC_DcuOutput>obj</DCC_DcuOutput>
-        <DCC_ObjOutput>obj</DCC_ObjOutput>
-        <DCC_HppOutput>obj</DCC_HppOutput>
-        <DCC_UnitSearchPath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\TeeChart\Sources;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <DCC_ResourcePath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_ResourcePath)</DCC_ResourcePath>
-        <DCC_ObjPath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_ObjPath)</DCC_ObjPath>
-        <DCC_IncludePath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_IncludePath)</DCC_IncludePath>
-        <DCC_Define>HIDE_TC_CLIENT_ERROR;LOGGING;USE_MADEXCEPT;MADEXCEPT3_OR_GREATER;FASTMM;$(DCC_Define)</DCC_Define>
-        <DCC_SYMBOL_PLATFORM>False</DCC_SYMBOL_PLATFORM>
-        <DCC_UNIT_PLATFORM>False</DCC_UNIT_PLATFORM>
-        <DCC_Optimize>False</DCC_Optimize>
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_DebugDCUs>true</DCC_DebugDCUs>
+        <DCC_Optimize>false</DCC_Optimize>
+        <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+        <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+        <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=Cochlear Limited;FileDescription=Custom Sound;FileVersion=4.0.0.0;InternalName=Custom Sound 4.0;LegalCopyright=Copyright (c) 2012 Cochlear Limited.;LegalTrademarks=Nucleus is a registered trademark of Cochlear Limited. Freedom, Contour, Contour Advance, Softip, ESPrit, SPrint, Custom Sound, ACE, SmartSound, Beam, Whisper, NRT, and AutoNRT are trademarks of Cochlear Limited. ADRO is a trademark of Dynamic Hearing Pty Ltd. Microsoft and Windows are registered trademarks of Microsoft Corporation. Pentium is a registered trademark of Intel Corporation.;OriginalFilename=CustomSound.exe;ProductName=Custom Sound;ProductVersion=4.0;SpecialBuild=</VerInfo_Keys>
-        <Icon_MainIcon>CustomSound.ico</Icon_MainIcon>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_5_Win32)'!=''">
-        <DCC_Define>CUSTOM_SOUND_US_BUILD;madExcept;$(DCC_Define)</DCC_Define>
-        <VerInfo_Keys>CompanyName=Cochlear Limited;FileDescription=Custom Sound;FileVersion=4.0.0.0;InternalName=Custom Sound 4.0;LegalCopyright=Copyright (c) 2012 Cochlear Limited.;LegalTrademarks=Nucleus is a registered trademark of Cochlear Limited. Freedom, Contour, Contour Advance, Softip, ESPrit, SPrint, Custom Sound, ACE, SmartSound, Beam, Whisper, NRT, and AutoNRT are trademarks of Cochlear Limited. ADRO is a trademark of Dynamic Hearing Pty Ltd. Microsoft and Windows are registered trademarks of Microsoft Corporation. Pentium is a registered trademark of Intel Corporation.;OriginalFilename=CustomSound.exe;ProductName=Custom Sound;ProductVersion=4.0;SpecialBuild=</VerInfo_Keys>
-        <VerInfo_Locale>1033</VerInfo_Locale>
+        <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
-        <Version>7.0</Version>
-        <DCC_WriteableConstants>True</DCC_WriteableConstants>
-        <DCC_IntegerOverflowCheck>True</DCC_IntegerOverflowCheck>
-        <DCC_RangeChecking>True</DCC_RangeChecking>
-        <DCC_GenerateStackFrames>True</DCC_GenerateStackFrames>
-        <DCC_MapFile>3</DCC_MapFile>
-        <DCC_DcuOutput>obj</DCC_DcuOutput>
-        <DCC_ObjOutput>obj</DCC_ObjOutput>
-        <DCC_HppOutput>obj</DCC_HppOutput>
-        <DCC_UnitSearchPath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\TeeChart\Sources;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <DCC_ResourcePath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_ResourcePath)</DCC_ResourcePath>
-        <DCC_ObjPath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_ObjPath)</DCC_ObjPath>
-        <DCC_IncludePath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_IncludePath)</DCC_IncludePath>
-        <DCC_Define>HIDE_TC_CLIENT_ERROR;Logging;DAL_DEV;CDI_METRICS;USE_MADEXCEPT;madExcept;SOFTWARE_REG_DEV;FullDebugMode;IMPLANT_ID_DEV;MADEXCEPT3_OR_GREATER;DEBUG;VIEW_PROCESSOR_DEBUG;$(DCC_Define)</DCC_Define>
-        <DCC_SYMBOL_PLATFORM>False</DCC_SYMBOL_PLATFORM>
-        <DCC_UNIT_PLATFORM>False</DCC_UNIT_PLATFORM>
-        <DCC_Optimize>False</DCC_Optimize>
+        <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+        <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+        <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=Cochlear Limited;FileDescription=Custom Sound;FileVersion=4.0.0.0;InternalName=Custom Sound 4.0;LegalCopyright=Copyright (c) 2012 Cochlear Limited.;LegalTrademarks=Nucleus is a registered trademark of Cochlear Limited. Freedom, Contour, Contour Advance, Softip, ESPrit, SPrint, Custom Sound, ACE, SmartSound, Beam, Whisper, NRT, and AutoNRT are trademarks of Cochlear Limited. ADRO is a trademark of Dynamic Hearing Pty Ltd. Microsoft and Windows are registered trademarks of Microsoft Corporation. Pentium is a registered trademark of Intel Corporation.;OriginalFilename=CustomSound.exe;ProductName=Custom Sound;ProductVersion=4.0;SpecialBuild=</VerInfo_Keys>
-        <Icon_MainIcon>CustomSound.ico</Icon_MainIcon>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_3)'!=''">
-        <Version>7.0</Version>
-        <DCC_WriteableConstants>True</DCC_WriteableConstants>
-        <DCC_Optimize>False</DCC_Optimize>
-        <DCC_IntegerOverflowCheck>True</DCC_IntegerOverflowCheck>
-        <DCC_RangeChecking>True</DCC_RangeChecking>
-        <DCC_GenerateStackFrames>True</DCC_GenerateStackFrames>
-        <DCC_MapFile>3</DCC_MapFile>
-        <DCC_DebugInfoInExe>True</DCC_DebugInfoInExe>
-        <DCC_DebugVN>True</DCC_DebugVN>
-        <DCC_DcuOutput>obj</DCC_DcuOutput>
-        <DCC_ObjOutput>obj</DCC_ObjOutput>
-        <DCC_HppOutput>obj</DCC_HppOutput>
-        <DCC_UnitSearchPath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\Developer Express Inc\Library\Delphi10;.\3rdPartyComponents\TeeChart\Sources;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <DCC_ResourcePath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi10;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_ResourcePath)</DCC_ResourcePath>
-        <DCC_ObjPath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi10;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_ObjPath)</DCC_ObjPath>
-        <DCC_IncludePath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi10;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_IncludePath)</DCC_IncludePath>
-        <DCC_Define>HIDE_TC_CLIENT_ERROR;Logging;DAL_DEV;CDI_METRICS;USE_MADEXCEPT;madExcept;SOFTWARE_REG_DEV;FullDebugMode;IMPLANT_ID_DEV;MADEXCEPT3_OR_GREATER;FASTMM;DEBUG;$(DCC_Define)</DCC_Define>
-        <DCC_SYMBOL_PLATFORM>False</DCC_SYMBOL_PLATFORM>
-        <DCC_UNIT_PLATFORM>False</DCC_UNIT_PLATFORM>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=Cochlear Limited;FileDescription=Custom Sound;FileVersion=4.0.0.0;InternalName=Custom Sound 4.0;LegalCopyright=Copyright (c) 2012 Cochlear Limited.;LegalTrademarks=Nucleus is a registered trademark of Cochlear Limited. Freedom, Contour, Contour Advance, Softip, ESPrit, SPrint, Custom Sound, ACE, SmartSound, Beam, Whisper, NRT, and AutoNRT are trademarks of Cochlear Limited. ADRO is a trademark of Dynamic Hearing Pty Ltd. Microsoft and Windows are registered trademarks of Microsoft Corporation. Pentium is a registered trademark of Intel Corporation.;OriginalFilename=CustomSound.exe;ProductName=Custom Sound;ProductVersion=4.0;SpecialBuild=</VerInfo_Keys>
-        <Icon_MainIcon>CustomSound.ico</Icon_MainIcon>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_4)'!=''">
-        <Version>7.0</Version>
-        <DCC_WriteableConstants>True</DCC_WriteableConstants>
-        <DCC_Optimize>False</DCC_Optimize>
-        <DCC_IntegerOverflowCheck>True</DCC_IntegerOverflowCheck>
-        <DCC_RangeChecking>True</DCC_RangeChecking>
-        <DCC_GenerateStackFrames>True</DCC_GenerateStackFrames>
-        <DCC_MapFile>3</DCC_MapFile>
-        <DCC_DcuOutput>obj</DCC_DcuOutput>
-        <DCC_ObjOutput>obj</DCC_ObjOutput>
-        <DCC_HppOutput>obj</DCC_HppOutput>
-        <DCC_UnitSearchPath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\TeeChart\Sources;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <DCC_ResourcePath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_ResourcePath)</DCC_ResourcePath>
-        <DCC_ObjPath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_ObjPath)</DCC_ObjPath>
-        <DCC_IncludePath>$(BDS)lib;$(BDS)lib\Obj;.\3rdPartyComponents\obj;.\3rdPartyComponents\madCollection\madBasic\Sources;.\3rdPartyComponents\madCollection\madDisAsm\Sources;.\3rdPartyComponents\madCollection\madExcept\Sources;.\3rdPartyComponents\BMDelphiSpinEdit;.\3rdPartyComponents\ComPortLib\source;.\3rdPartyComponents\Developer Express Inc\Library\Delphi11;.\3rdPartyComponents\Jcl\Source;.\3rdPartyComponents\Jcl\Source\windows;.\3rdPartyComponents\TNTUnicodeControls;.\3rdPartyComponents\Toolbar2000\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source;.\3rdPartyComponents\Toolbar2000\TBX\Source\Themes;.\3rdPartyComponents\VirtualTreeview\Source;.\Application;.\Audio;.\Business Model;.\CDI Devices;.\Capability Model;.\Cochlear Controls;.\Common;.\Data Model;.\Database Access Layer\CDAL_New;.\Database Access Layer\CDAL_New\Imports;.\Database Access Layer\ClinicDataServer;.\Database Access Layer\General\cochUnits;.\Database Access Layer\General\cochUnits\Clinic;.\Database Access Layer\General\cochUnits\Clinic\DataModules;.\Database Access Layer\General\cochUnits\Clinic\DataPersistence;.\Database Access Layer\General\cochUnits\Clinic\GUIDObjs;.\Help;.\IESupport;.\LevelPrediction;.\Message Subscription Manager;.\Persistence Model;.\Persistence Model\Map Compiler;.\Persistence Model\Map Compiler\DIL;.\Persistence Model\Map Compiler\SP22;.\Persistence Model\Tools\Binary to string format;.\Programming Interface Model;.\Software Registration;.\User Interface;.\3rdPartyComponents\TeeChart\Sources;.\3rdPartyComponents\Jcl\Source\include;.\3rdPartyComponents\Jcl\Source\common;.\3rdPartyComponents\Jcl\Source\vcl;.\3rdPartyComponents\Raize\RC6\Source;.\3rdPartyComponents\Abbrevia\source;$(DCC_IncludePath)</DCC_IncludePath>
-        <DCC_Define>HIDE_TC_CLIENT_ERROR;Logging;DAL_DEV;CDI_METRICS;USE_MADEXCEPT;madExcept;SOFTWARE_REG_DEV;FullDebugMode;IMPLANT_ID_DEV;MADEXCEPT3_OR_GREATER;FASTMM;DEBUG;VIEW_PROCESSOR_DEBUG;INCLUDE_EXTERNAL_VERSION_RESOURCE;$(DCC_Define)</DCC_Define>
-        <DCC_SYMBOL_PLATFORM>False</DCC_SYMBOL_PLATFORM>
-        <DCC_UNIT_PLATFORM>False</DCC_UNIT_PLATFORM>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_4_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=Cochlear Limited;FileDescription=Custom Sound;FileVersion=4.0.0.0;InternalName=Custom Sound 4.0;LegalCopyright=Copyright (c) 2012 Cochlear Limited.;LegalTrademarks=Nucleus is a registered trademark of Cochlear Limited. Freedom, Contour, Contour Advance, Softip, ESPrit, SPrint, Custom Sound, ACE, SmartSound, Beam, Whisper, NRT, and AutoNRT are trademarks of Cochlear Limited. ADRO is a trademark of Dynamic Hearing Pty Ltd. Microsoft and Windows are registered trademarks of Microsoft Corporation. Pentium is a registered trademark of Intel Corporation.;OriginalFilename=CustomSound.exe;ProductName=Custom Sound;ProductVersion=4.0;SpecialBuild=</VerInfo_Keys>
-        <Icon_MainIcon>CustomSound.ico</Icon_MainIcon>
-        <VerInfo_Locale>1033</VerInfo_Locale>
-    </PropertyGroup>
-    <ProjectExtensions>
-        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
-        <Borland.ProjectType>VCLApplication</Borland.ProjectType>
-        <BorlandProject>
-            <Delphi.Personality>
-                <Parameters>
-                    <Parameters Name="DebugSourceDirs">C:\Development\FittingSoftware\Source\Trunk\Capability Model;C:\Perforce\NCharlton_Main_Dev\FittingSoftware\Source\Trunk\Database Access Layer\General\cochUnits\Clinic\</Parameters>
-                    <Parameters Name="UseLauncher">False</Parameters>
-                    <Parameters Name="LoadAllSymbols">True</Parameters>
-                    <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
-                </Parameters>
-                <Language>
-                    <Language Name="ProjectLang">$00000409</Language>
-                </Language>
-                <VersionInfo>
-                    <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
-                    <VersionInfo Name="AutoIncBuild">False</VersionInfo>
-                    <VersionInfo Name="MajorVer">3</VersionInfo>
-                    <VersionInfo Name="MinorVer">3</VersionInfo>
-                    <VersionInfo Name="Release">15</VersionInfo>
-                    <VersionInfo Name="Build">2727</VersionInfo>
-                    <VersionInfo Name="Debug">False</VersionInfo>
-                    <VersionInfo Name="PreRelease">False</VersionInfo>
-                    <VersionInfo Name="Special">False</VersionInfo>
-                    <VersionInfo Name="Private">False</VersionInfo>
-                    <VersionInfo Name="DLL">False</VersionInfo>
-                    <VersionInfo Name="Locale">3081</VersionInfo>
-                    <VersionInfo Name="CodePage">1252</VersionInfo>
-                </VersionInfo>
-                <VersionInfoKeys>
-                    <VersionInfoKeys Name="CompanyName">Cochlear Limited</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileDescription">Custom Sound</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">3.3.15.2727</VersionInfoKeys>
-                    <VersionInfoKeys Name="InternalName">Custom Sound 3.3</VersionInfoKeys>
-                    <VersionInfoKeys Name="LegalCopyright">Copyright (c) 2009 Cochlear Limited.</VersionInfoKeys>
-                    <VersionInfoKeys Name="LegalTrademarks">Nucleus is a registered trademark of Cochlear Limited. Freedom, Contour, Contour Advance, Softip, ESPrit, SPrint, Custom Sound, ACE, SmartSound, Beam, Whisper, NRT, and AutoNRT are trademarks of Cochlear Limited. ADRO is a trademark of Dynamic Hearing Pty Ltd. Microsoft and Windows are registered trademarks of Microsoft Corporation. Pentium is a registered trademark of Intel Corporation.</VersionInfoKeys>
-                    <VersionInfoKeys Name="OriginalFilename">CustomSound.exe</VersionInfoKeys>
-                    <VersionInfoKeys Name="ProductName">Custom Sound</VersionInfoKeys>
-                    <VersionInfoKeys Name="ProductVersion">3.3</VersionInfoKeys>
-                    <VersionInfoKeys Name="SpecialBuild"/>
-                    <VersionInfoKeys Name="CompileDate">Thursday, 20 January 2011 7:14 PM</VersionInfoKeys>
-                </VersionInfoKeys>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k180.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp180.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclib180.bpl">Embarcadero InterBase Express Components</Excluded_Packages>
-                </Excluded_Packages>
-                <Source>
-                    <Source Name="MainSource">CustomSound.dpr</Source>
-                </Source>
-            </Delphi.Personality>
-            <ModelSupport>False</ModelSupport>
-            <Platforms>
-                <Platform value="Win32">True</Platform>
-                <Platform value="Win64">False</Platform>
-            </Platforms>
-        </BorlandProject>
-        <ProjectFileVersion>12</ProjectFileVersion>
-    </ProjectExtensions>
-    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <RcCompile Include="CustomSound_version.rc">
-            <Form>CustomSound_version.res</Form>
-        </RcCompile>
-        <RcCompile Include="Programming Interface Model\PostProcessedRALogSchema.rc">
-            <Form>PostProcessedRALogSchema.res</Form>
-        </RcCompile>
-        <DCCReference Include="3rdPartyComponents\CodeSiteEx\source\CSIntfEx.pas"/>
-        <DCCReference Include="Data Model\ActionDataModels.pas"/>
-        <DCCReference Include="Data Model\ActionMapDataModels.pas"/>
-        <DCCReference Include="Application\ApplicationInitialisation.pas"/>
-        <DCCReference Include="Application\ApplicationLogin.pas"/>
-        <DCCReference Include="Application\ApplicationStartedMutex.pas"/>
-        <DCCReference Include="Application\ApplicationSupport.pas"/>
-        <DCCReference Include="Business Model\AutoNRTBusinessModels.pas"/>
-        <DCCReference Include="Business Model\AutoNRTConstants.pas"/>
-        <DCCReference Include="Business Model\AutoNRTTypes.pas"/>
-        <DCCReference Include="Persistence Model\BabelModel.pas"/>
-        <DCCReference Include="Data Model\BatteryWarning.pas"/>
-        <DCCReference Include="Business Model\BusinessModels.pas"/>
-        <DCCReference Include="Data Model\CDIChannelDataModel.pas"/>
-        <DCCReference Include="CDI Devices\CDIConsts.pas"/>
-        <DCCReference Include="Data Model\CDIMapDataModel.pas"/>
-        <DCCReference Include="CDI Devices\CDISupport.pas"/>
-        <DCCReference Include="CDI Devices\CDIWrapper.pas"/>
-        <DCCReference Include="Data Model\ChannelDataModel.pas"/>
-        <DCCReference Include="Data Model\ClassicChannelDataModel.pas"/>
-        <DCCReference Include="Data Model\ClassicMapDataModel.pas"/>
-        <DCCReference Include="Database Access Layer\ClinicDataServer\ClinicDataAccessClientIntf.pas"/>
-        <DCCReference Include="Cochlear Controls\clrCustomDataModelListViews.pas">
-            <Form>clrCustomDataModelListView</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Cochlear Controls\clrCustomListViews.pas">
-            <Form>clrCustomListView</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Cochlear Controls\clrForms.pas">
-            <Form>clrForm</Form>
-            <DesignClass>TTntForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FramePIF.pas">
-            <Form>frmPIF</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="cochlear controls\clrRadioGroup.pas"/>
-        <DCCReference Include="User Interface\FrameStatusBar.pas">
-            <Form>frmStatusBar</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\cochClinicLookups.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\cochClinicResourceStrings.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14ActionMapOverlay.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14GUIDObjXmlReader.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14ImplantTestXmlReader.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14ImplantTestXmlReaderUtils.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14ImplantXmlReader.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14MapOverlay.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14ObjectiveThresholdXmlReader.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14ObjectiveThresholdXmlReaderUtils.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14XmlReaderFactory.pas"/>
-        <DCCReference Include="Crem\Cochlear_CustomSound_Crem_TLB.pas"/>
-        <DCCReference Include="Application\CochlearExceptions.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochXmlReader.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochXmlReaderMessageSink.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochXmlReaderResolver.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochXmlSemanticValidator.pas"/>
-        <DCCReference Include="COH_ArrayUtils.pas"/>
-        <DCCReference Include="COH_ConversionUtils.pas"/>
-        <DCCReference Include="Common\COH_CPUUsage.pas"/>
-        <DCCReference Include="IESupport\COH_IEConst.pas"/>
-        <DCCReference Include="Common\COH_InterfacedPersistent.pas"/>
-        <DCCReference Include="Common\COH_StringComparison.pas"/>
-        <DCCReference Include="COH_SysUtils.pas"/>
-        <DCCReference Include="Common\COH_WideStringDictionary.pas"/>
-        <DCCReference Include="Common\COH_XmlUtils.pas"/>
-        <DCCReference Include="cochlear controls\ColorConstants.pas"/>
-        <DCCReference Include="ComponentNumbers.pas"/>
-        <DCCReference Include="Data Model\ContactDataModels.pas"/>
-        <DCCReference Include="Programming Interface Model\CPSPIFModel.pas"/>
-        <DCCReference Include="Crem\CremLogger.pas"/>
-        <DCCReference Include="Application\CustomSoundIniFile.pas"/>
-        <DCCReference Include="Persistence Model\DatabasePersistenceModel.pas"/>
-        <DCCReference Include="Data Model\DataModelProxy.pas"/>
-        <DCCReference Include="Data Model\DataModels.pas"/>
-        <DCCReference Include="User Interface\DataModuleActiveRecipient.pas">
-            <Form>dmdActiveRecipient</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\DataModules\DataModuleDatabase.pas">
-            <Form>dmdDatabase</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\DataModules\DataModuleEquipment.pas">
-            <Form>dmdEquipment</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\DataModuleGlobal.pas">
-            <Form>dmdGlobal</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\DataModules\DataModuleLocations.pas">
-            <Form>dmdLocations</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\DataModules\DataModuleLookups.pas">
-            <Form>dmdLookups</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\DataModuleStorage.pas">
-            <Form>dmdStorage</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Business Model\DataTypesDefinitions.pas"/>
-        <DCCReference Include="CDI Devices\DeviceDetectorManager.pas"/>
-        <DCCReference Include="3rdPartyComponents\DSI\DSiWin32.pas"/>
-        <DCCReference Include="Application\DynamicResearchOpts.pas"/>
-        <DCCReference Include="Data Model\ElectrodeDataModels.pas"/>
-        <DCCReference Include="Data Model\ElectrodeFlagging.pas"/>
-        <DCCReference Include="Application\ElectrodeNumberList.pas"/>
-        <DCCReference Include="Data Model\ElectrodePairDataModels.pas"/>
-        <DCCReference Include="Persistence Model\Esprit22Model.pas"/>
-        <DCCReference Include="Business Model\EspritBasedOnN22PowerSupport.pas"/>
-        <DCCReference Include="Persistence Model\EspritIIModel.pas"/>
-        <DCCReference Include="Persistence Model\EspritModel.pas"/>
-        <DCCReference Include="Persistence Model\EspritSE1Model.pas"/>
-        <DCCReference Include="Application\ExceptionHandling.pas"/>
-        <DCCReference Include="User Interface\FormAboutDlg.pas">
-            <Form>frmAbout</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormBatteries.pas">
-            <Form>frmBatteries</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormBatterySuitabilityDetail.pas">
-            <Form>frmBatterySuitability</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormBilateral.pas">
-            <Form>frmBilateral</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormCannotPerformIntraOpTesting.pas">
-            <Form>frmCannotPerformIntraOpTesting</Form>
-        </DCCReference>
-        <DCCReference Include="Database Access Layer\ClinicDataServer\formCDSConfigMain.pas">
-            <Form>frmCDSConfigMain</Form>
-            <DesignClass>TTntForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormClinic.pas">
-            <Form>frmClinic</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormClinicDetail.pas">
-            <Form>frmClinicDetail</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormClinicianDetail.pas">
-            <Form>frmClinicianDetail</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormComplianceMeasuring.pas">
-            <Form>frmMeasuringCompliance</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormCREMUploadAuthorisation.pas">
-            <Form>frmCREMUploadAuthorisation</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormCREMUploadPreference.pas">
-            <Form>frmCREMUploadPreference</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormElectrodeNotesAdd.pas">
-            <Form>frmElectrodeNotesAdd</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormErrorReport.pas">
-            <Form>frmErrorReport</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormFinalizeProgramming.pas">
-            <Form>frmFinalizeProgramming</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormImplantDetail.pas">
-            <Form>frmPatientImplantDetail</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormImplantSelection.pas">
-            <Form>frmImplantSelection</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormImplantTestReminder.pas">
-            <Form>frmImplantTestReminder</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormImplantTypeSelection.pas">
-            <Form>frmImplantTypeSelection</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormImportAutoNRTProgress.pas">
-            <Form>frmImportAutoNRTProgress</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormImportNRTObjectiveLevelsSource.pas">
-            <Form>frmImportNRTObjectiveLevelsSource</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormIndex.pas">
-            <Form>frmIndex</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormLogin.pas">
-            <Form>frmLogin</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormLoginOptions.pas">
-            <Form>frmLoginOptions</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMain.pas">
-            <Form>frmMain</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormManageMAPs.pas">
-            <Form>frmManageMAPs</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormManageRecipients.pas">
-            <Form>frmManageRecipients</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapCompare.pas">
-            <Form>frmMapCompare</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapCompareReportPrinting.pas">
-            <Form>frmMapCompareReportPrinting</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMAPConversionSummary.pas">
-            <Form>frmMAPConversionSummary</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapKeyboard.pas">
-            <Form>frmMapKeyboard</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapModify.pas">
-            <Form>frmMapModify</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapQuickKeyboard.pas">
-            <Form>frmMapQuickKeyboard</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapSelection.pas">
-            <Form>frmMapSelection</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapSessionSelect.pas">
-            <Form>frmMapSessionSelect</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapSweepNumber.pas">
-            <Form>frmMapSweepNumber</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapTabs.pas">
-            <Form>frmMapTabs</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMapWrite.pas">
-            <Form>frmMapWrite</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMeningitisWarning.pas">
-            <Form>frmMeningitisWarning</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormMonitorProcessors.pas">
-            <Form>frmMonitorProcessors</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormNRT.pas">
-            <Form>frmNRT</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormObjectiveThresholdSelect.pas">
-            <Form>frmObjectiveThresholdSelect</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormOverlayConfiguration.pas">
-            <Form>frmOverlayConfiguration</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\formPowerOptimisation.pas">
-            <Form>frmPowerOptimisation</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormProcessorConfiguration.pas">
-            <Form>frmProcessorConfiguration</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormProgramConfiguration.pas">
-            <Form>frmProgramConfiguration</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormReadRemoteAssistantDataLogsProgress.pas">
-            <Form>frmMyCochlearViewerLaunchProgress</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormRecipientDetail.pas">
-            <Form>frmRecipientDetails</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormRecipientProgramming.pas">
-            <Form>frmRecipientProgramming</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormReportViewer.pas">
-            <Form>frmReportViewer</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormResearchOverlayFineTuning.pas">
-            <Form>FrmResearchOverlayFineTuning</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSelectImplant.pas">
-            <Form>frmSelectImplant</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSelectLeftRightImplant.pas">
-            <Form>frmSelectLeftRightImplant</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSelectMap.pas">
-            <Form>frmSelectMAP</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSelectMappingMethod.pas">
-            <Form>frmSelectMappingMethod</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSelectMAPsForComparison.pas">
-            <Form>frmSelectMAPsForComparison</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSelectOverlay.pas">
-            <Form>frmSelectOverlay</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSelectRecipient.pas">
-            <Form>frmSelectRecipient</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormServiceRequestNumberEntry.pas">
-            <Form>frmServiceRequestNumberEntry</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\formSessionHistoryList.pas">
-            <Form>frmSessionHistoryList</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSetPassword.pas">
-            <Form>frmSetPassword</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormSpectraToEspritBasedOnN22Conversion.pas">
-            <Form>frmSpectraToEspritBasedOnN22Conversion</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormAutoNRTAndImpedanceMeasurementsImported.pas">
-            <Form>frmAutoNRTAndImpedanceMeasurementsImported</Form>
-            <DesignClass>TTntForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormAutoNRTAndImpedanceMeasurementsLinked.pas">
-            <Form>frmAutoNRTAndImpedanceMeasurementsLinked</Form>
-            <DesignClass>TTntForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormTalkToRecipient.pas">
-            <Form>frmTalkToRecipient</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormTestImpedances.pas">
-            <Form>frmTestImpedances</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormTestImpedancesDetails.pas">
-            <Form>frmTestImpedancesDetails</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormTestImpedancesHistory.pas">
-            <Form>frmTestImpedancesHistory</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormTestImpedancesOptions.pas">
-            <Form>frmTestImpedancesOptions</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormVoltageCompliance.pas">
-            <Form>frmVoltageCompliance</Form>
-            <DesignClass>TclrForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FormWaitingDetectionThreadsTerminatedProgress.pas">
-            <Form>frmWaitingDetectionThreadsTerminatedProgress</Form>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameBatterySuitability.pas">
-            <Form>frmBatteryMAPSuitability</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameHeader.pas">
-            <Form>frmHeader</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameOverlayMAP.pas">
-            <Form>frmOverlayMAP</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameOverlayOverlay.pas">
-            <Form>frmOverlayOverlay</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameOverlayProcessors.pas">
-            <Form>frmOverlayProcessors</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameOverlaySlot.pas">
-            <Form>frmOverlaySlot</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameProcessorSelection.pas">
-            <Form>FrmProcessorSelection</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameSlotBattery.pas">
-            <Form>frmSlotBattery</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameSlotInfo.pas">
-            <Form>frmSlotInfo</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="User Interface\FrameVolumeAndSensitivity.pas">
-            <Form>frmVolumeAndSensitivity</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="CDI Devices\GlobalCDIDevices.pas"/>
-        <DCCReference Include="Persistence Model\HardwareStatus.pas"/>
-        <DCCReference Include="Help\HelpConstants.pas"/>
-        <DCCReference Include="Application\HelpLibraryManager.pas"/>
-        <DCCReference Include="IESupport\IEDocHostUIHandler.pas"/>
-        <DCCReference Include="Data Model\ImpedanceDataModel.pas"/>
-        <DCCReference Include="Data Model\ImplantDataModels.pas"/>
-        <DCCReference Include="User Interface\ImplantIDFlowUI.pas"/>
-        <DCCReference Include="Data Model\ImplantTestDataModel.pas"/>
-        <DCCReference Include="Application\Logging.pas"/>
-        <DCCReference Include="Application\LoggingTypes.pas"/>
-        <DCCReference Include="Common\MainUtils.pas"/>
-        <DCCReference Include="Business Model\MapBusinessModelIntf.pas"/>
-        <DCCReference Include="Business Model\MAPBusinessModels.pas"/>
-        <DCCReference Include="Business Model\MapComparison.pas"/>
-        <DCCReference Include="Data Model\MapConversionDataModels.pas"/>
-        <DCCReference Include="Business Model\MapConversionSummary.pas"/>
-        <DCCReference Include="Data Model\MAPDataModels.pas"/>
-        <DCCReference Include="Business Model\MapList.pas"/>
-        <DCCReference Include="Business Model\MapNamedRuleSupport.pas"/>
-        <DCCReference Include="Business Model\MapOptimisation.pas"/>
-        <DCCReference Include="Business Model\MapPersonalisationUtils.pas"/>
-        <DCCReference Include="Business Model\MappingMethodsSupport.pas"/>
-        <DCCReference Include="Business Model\MappingMethodsSupportTypes.pas"/>
-        <DCCReference Include="User Interface\MapPresenter.pas"/>
-        <DCCReference Include="Message Subscription Manager\MessageConstants.pas"/>
-        <DCCReference Include="Message Subscription Manager\MessageSubscriptionManager.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_AcousticFrequencyBandValues.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_AutoNRT.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_Base.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_Channel.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_ChannelStimulation.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_ChannelStimulationResponse.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_CoilMeasurement.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_ElectrodeTelemetry.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_HardwareStop.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_ImplantPowerLevel.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_ImplantTelemetry.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_ImplantTelemetryCollection.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_ImplantTestProgress.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_Map.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_Overlay.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_Persistence.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_PersistenceDisconnect.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_PersistenceMapList.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_PersistenceModelConnected.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_PersistenceState.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_PIF.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_POPTLinkConstants.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_ProcessorReset.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_SCKStatus.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_SkinFlapCurrent.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_StimulationSequence.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_Telemetry.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_TransmitCoil.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_WAXMLImportComplete.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_WAXMLLateMatchupComplete.pas"/>
-        <DCCReference Include="Common\MSXML6_TLB.pas"/>
-        <DCCReference Include="Business Model\MVBTWarningSupport.pas"/>
-        <DCCReference Include="NamedThread.pas"/>
-        <DCCReference Include="Message Subscription Manager\ObjectStreaming.pas"/>
-        <DCCReference Include="Data Model\OverlayDataModels.pas"/>
-        <DCCReference Include="Data Model\PersistenceDataModels.pas"/>
-        <DCCReference Include="Persistence Model\PersistenceDetectionThread.pas"/>
-        <DCCReference Include="Persistence Model\PersistenceManager.pas"/>
-        <DCCReference Include="Data Model\PIFDataModels.pas"/>
-        <DCCReference Include="Programming Interface Model\PIFManager.pas"/>
-        <DCCReference Include="Programming Interface Model\PIFModel.pas"/>
-        <DCCReference Include="User Interface\PopupMessageSupport.pas"/>
-        <DCCReference Include="Data Model\PowerOptimisationDataModels.pas"/>
-        <DCCReference Include="Programming Interface Model\PPSControl.pas"/>
-        <DCCReference Include="Programming Interface Model\PPSPIFModel.pas"/>
-        <DCCReference Include="Programming Interface Model\PPSSerialThread.pas"/>
-        <DCCReference Include="Data Model\ProcessorConfigurationDataModels.pas"/>
-        <DCCReference Include="Business Model\ProcessorDataLogging.pas"/>
-        <DCCReference Include="Persistence Model\ProcessorPersistenceModel.pas"/>
-        <DCCReference Include="Message Subscription Manager\PropertyFunc.pas"/>
-        <DCCReference Include="Business Model\QuiescentCurrent.pas"/>
-        <DCCReference Include="Business Model\RecipientBusinessModelInterface.pas"/>
-        <DCCReference Include="Business Model\RecipientBusinessModels.pas"/>
-        <DCCReference Include="Data Model\RecipientDataModels.pas"/>
-        <DCCReference Include="Business Model\ReportBusinessModels.pas"/>
-        <DCCReference Include="Capability Model\ResearchRegionalSupport.pas"/>
-        <DCCReference Include="Capability Model\Rules.pas"/>
-        <DCCReference Include="Business Model\SCKSupports.pas"/>
-        <DCCReference Include="Application\SessionConfigurationList.pas"/>
-        <DCCReference Include="Data Model\SessionDataModels.pas"/>
-        <DCCReference Include="Application\ShutdownChecker.pas"/>
-        <DCCReference Include="Data Model\SlotDataModel.pas"/>
-        <DCCReference Include="Business Model\SlotInformation.pas"/>
-        <DCCReference Include="Application\SoundAutomationExtraGlobals.pas"/>
-        <DCCReference Include="Persistence Model\SP12Model.pas"/>
-        <DCCReference Include="Programming Interface Model\SP12PIFModel.pas"/>
-        <DCCReference Include="Persistence Model\SP15Model.pas"/>
-        <DCCReference Include="Persistence Model\SP16Model.pas"/>
-        <DCCReference Include="Persistence Model\Map Compiler\SP22\SP22UserParameters.pas"/>
-        <DCCReference Include="Persistence Model\SpectraModel.pas"/>
-        <DCCReference Include="Business Model\SpectraToEspritBasedOnN22MapConversion.pas"/>
-        <DCCReference Include="Business Model\SpeechProcessorBusinessModelEventMulticasters.pas"/>
-        <DCCReference Include="Business Model\SpeechProcessorBusinessModels.pas"/>
-        <DCCReference Include="Business Model\SpeechProcessorBusinessModelsStimViewControllerInterface.pas"/>
-        <DCCReference Include="Business Model\SpeechProcessorConnectFlow.pas"/>
-        <DCCReference Include="Data Model\SpeechProcessorDatamodel.pas"/>
-        <DCCReference Include="Data Model\SPICEMapDataModel.pas"/>
-        <DCCReference Include="Persistence Model\SPICEModel.pas"/>
-        <DCCReference Include="Persistence Model\SprintConstants.pas"/>
-        <DCCReference Include="Persistence Model\SprintModel.pas"/>
-        <DCCReference Include="Programming Interface Model\SPXMLReader.pas"/>
-        <DCCReference Include="Application\StringValueDescriptionList.pas"/>
-        <DCCReference Include="Message Subscription Manager\SynchronizationClasses.pas"/>
-        <DCCReference Include="TestDatabaseConnection.pas"/>
-        <DCCReference Include="3rdPartyComponents\ThreadedTimer\Thdtimer.pas"/>
-        <DCCReference Include="Application\UnsavedMapRecoveryThread.pas"/>
-        <DCCReference Include="Business Model\UserBusinessModels.pas"/>
-        <DCCReference Include="Data Model\UserDataModel.pas"/>
-        <DCCReference Include="Utility_Form.pas">
-            <Form>UtilityForm</Form>
-        </DCCReference>
-        <DCCReference Include="Programming Interface Model\WADeviceThread.pas"/>
-        <DCCReference Include="Programming Interface Model\WAPIFModel.pas"/>
-        <DCCReference Include="Programming Interface Model\WAPIFModelExceptions.pas"/>
-        <DCCReference Include="Programming Interface Model\WAPIFModelIntf.pas"/>
-        <DCCReference Include="Programming Interface Model\WAXMLTypes.pas"/>
-        <DCCReference Include="Business Model\XMLBusinessModel.pas"/>
-        <DCCReference Include="Business Model\XSLTUtility.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14ProcessorUsageLog.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14Overlay.pas"/>
-        <DCCReference Include="Common\COH_TRegistry.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14Action.pas"/>
-        <DCCReference Include="Database Access Layer\General\cochUnits\Clinic\GUIDObjs\cochCS14ActionMap.pas"/>
-        <DCCReference Include="User Interface\RecipientStatus.pas"/>
-        <DCCReference Include="User Interface\GUITokenLogger.pas"/>
-        <DCCReference Include="User Interface\FrameProgramConfigProcessing.pas">
-            <Form>frmProgramConfigProcessing</Form>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="3rdPartyComponents\CodeSite\CodeSiteGlobal.pas"/>
-        <DCCReference Include="3rdPartyComponents\CodeSite\CodeSiteLogging.pas"/>
-        <DCCReference Include="User Interface\DataModuleImages.pas">
-            <Form>dmdImages</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Application\ProgramConfigurationDefaults.pas"/>
-        <DCCReference Include="Programming Interface Model\WAXMLAbstraction.pas"/>
-        <DCCReference Include="Clinical\Imports\Cochlear_Clinical_TLB.pas"/>
-        <DCCReference Include="Common\COH_DateUtils.pas"/>
-        <DCCReference Include="Cochlear\Cochlear.SuperObject.pas"/>
-        <DCCReference Include="Programming Interface Model\WAXMLInterpreter.pas"/>
-        <DCCReference Include="Programming Interface Model\IFCARD.PAS"/>
-        <DCCReference Include="Programming Interface Model\IFCardAbstraction.pas"/>
-        <DCCReference Include="Application\Analytics.pas"/>
-        <DCCReference Include="Application\AnalyticsInterface.pas"/>
-        <DCCReference Include="Application\ApplicationInitialisationInterface.pas"/>
-        <DCCReference Include="Application\CustomSoundUsageRegistry.pas"/>
-        <DCCReference Include="Application\AnalyticsUploader.pas"/>
-        <DCCReference Include="MI_WAXMLImportProgress.pas"/>
-        <DCCReference Include="Business Model\MVBTMapValidationRuleSupport.pas"/>
-        <DCCReference Include="Message Subscription Manager\MI_LateMatchup.pas"/>
-        <DCCReference Include="User Interface\FrameCochlearIDEdit.pas">
-            <Form>frmCochlearIDEdit</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="Application\GlobalUpdateTimers.pas"/>
-        <RcCompile Include="Application\ExecutionLevelAsInvokerManifest.rc">
-            <Form>Application\ExecutionLevelAsInvokerManifest.res</Form>
-        </RcCompile>
-        <RcCompile Include="CustomSound_version.res">
-            <Form>CustomSound_version.res</Form>
-        </RcCompile>
-        <BuildConfiguration Include="Debug">
+        <DCCReference Include="MyClass.pas"/>
+        <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
-            <CfgParent>Base</CfgParent>
-        </BuildConfiguration>
-        <BuildConfiguration Include="Release_US">
-            <Key>Cfg_5</Key>
-            <CfgParent>Cfg_1</CfgParent>
-        </BuildConfiguration>
-        <BuildConfiguration Include="Release_Versioned">
-            <Key>Cfg_4</Key>
-            <CfgParent>Base</CfgParent>
-        </BuildConfiguration>
-        <BuildConfiguration Include="Profile">
-            <Key>Cfg_3</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
-        <BuildConfiguration Include="Release">
+        <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
-    <Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
-    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release_US' And '$(Platform)'=='Win32'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release_US' And '$(Platform)'=='Win64'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Profile' And '$(Platform)'=='Win32'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Profile' And '$(Platform)'=='Win64'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release_Versioned' And '$(Platform)'=='Win32'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Config)'=='Release_Versioned' And '$(Platform)'=='Win64'">
-        <PreBuildEvent>&quot;$(BDS)\bin\brcc32.exe&quot; &quot;$(INPUTNAME)_version.rc&quot;
-</PreBuildEvent>
-        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
-        <PreLinkEvent/>
-        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent/>
-        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
-    </PropertyGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Delphi.Personality.12</Borland.Personality>
+        <Borland.ProjectType>Application</Borland.ProjectType>
+        <BorlandProject>
+            <Delphi.Personality>
+                <Source>
+                    <Source Name="MainSource">test.dpr</Source>
+                </Source>
+            </Delphi.Personality>
+            <Deployment>
+                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\test.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>test.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployClass Required="true" Name="DependencyPackage">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch2048">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXInfoPList">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceDebug">
+                    <Platform Name="iOSDevice">
+                        <RemoteDir>..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage470">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-normal</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeX86File">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\x86</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSResource">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXEntitlements">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidGDBServer">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch640">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage960">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xlarge</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon96">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch320">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon144">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-xxhdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeMipsFile">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\mips</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashImageDef">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DebugSymbols">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="DependencyFramework">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                        <Extensions>.framework</Extensions>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage426">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-small</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSEntitlements">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AdditionalDebugSymbols">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidClassesDexFile">
+                    <Platform Name="Android">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSInfoPList">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch1024">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_DefaultAppIcon">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectOSXResource">
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\Resources</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch768">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Required="true" Name="ProjectOutput">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi-v7a</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidLibnativeArmeabiFile">
+                    <Platform Name="Android">
+                        <RemoteDir>library\lib\armeabi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_SplashImage640">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-large</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="File">
+                    <Platform Name="iOSDevice">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="Android">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <RemoteDir>Contents\MacOS</RemoteDir>
+                        <Operation>0</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPhone_Launch640x1136">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon36">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-ldpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashStyles">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="iPad_Launch1536">
+                    <Platform Name="iOSDevice">
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="iOSSimulator">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon48">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-mdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_LauncherIcon72">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-hdpi</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="ProjectAndroidManifest">
+                    <Platform Name="Android">
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <ProjectRoot Platform="Android" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="iOSDevice" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win32" Name="$(PROJECTNAME)"/>
+                <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
+                <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
+            </Deployment>
+            <Platforms>
+                <Platform value="Android">False</Platform>
+                <Platform value="iOSDevice">False</Platform>
+                <Platform value="iOSSimulator">False</Platform>
+                <Platform value="OSX32">False</Platform>
+                <Platform value="Win32">True</Platform>
+                <Platform value="Win64">False</Platform>
+            </Platforms>
+            <UnitTesting>
+                <TestProjectName>C:\dev\delphi-compiler\test\Test\testTests.dproj</TestProjectName>
+            </UnitTesting>
+        </BorlandProject>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+    <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
+    <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
 </Project>

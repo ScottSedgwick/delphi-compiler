@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2014/09/22 10:11:31.789,C:\dev\delphi-compiler\test\test.dproj=\\vmware-host\Shared Folders\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2014/09/22 14:48:09.187,=C:\dev\delphi-compiler\test\Unit1.pas</Transaction>
+    <Transaction>2014/09/22 14:48:58.044,C:\dev\delphi-compiler\test\MyClass.pas=C:\dev\delphi-compiler\test\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>
