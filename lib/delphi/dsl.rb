@@ -42,12 +42,12 @@ def delphi(*args)
   proj = Delphi::Project.new(dproj)
   proj.platform = platform if platform
   proj.config = config if config
+  task sym => prereqs do
+    Rake::Task[proj.output].invoke
+  end
   file proj.output do
     proj.compile
     yield proj if block_given?
-  end
-  task sym => prereqs do
-    Rake::Task[proj.output].invoke
   end
   Rake::Task[sym].sources = dproj
 
