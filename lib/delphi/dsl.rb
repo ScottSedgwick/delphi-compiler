@@ -3,25 +3,9 @@
 require 'rake/clean'
 require 'delphi/project'
 
-def _load_args(args)
-  result = args
-  fail '<Symbol> and <Dproj file> are required arguments to the delphi compilation task' if result.length < 2
-
-  if result.last.instance_of?(Hash)
-    last_idx = result.length - 1
-    p = result[last_idx][result[last_idx].keys[0]]
-    result[last_idx] = result[last_idx].keys[0]
-    result << p
-  end
-  result
-end
-
 def _parse_args(args)
-  sym      = args[0]
-  dproj    = args[1]
-  platform = nil
-  config   = nil
-  prereqs  = []
+  args = (args.take(args.length - 1) + args.last.to_a).flatten if args.last.instance_of?(Hash)
+  sym, dproj, platform, config, prereqs = args[0], args[1], nil, nil, []
   case args.length
   when 5
     platform = args[2]
@@ -37,7 +21,8 @@ def _parse_args(args)
 end
 
 def delphi(*args)
-  sym, dproj, platform, config, prereqs = _parse_args(_load_args(args))
+  fail '<Symbol> and <Dproj file> are required arguments to the delphi compilation task' if args.length < 2
+  sym, dproj, platform, config, prereqs = _parse_args(args)
 
   proj = Delphi::Project.new(dproj)
   proj.platform = platform if platform
@@ -54,6 +39,10 @@ def delphi(*args)
   CLOBBER.include(proj.output)
 end
 
+def delphi_exe(sym)
+  Rake::Task[sym].sources.output
+end
+
 def dunit(sym, prereqs)
   if prereqs.instance_of?(Hash)
     compile_sym = prereqs.keys[0]
@@ -64,7 +53,7 @@ def dunit(sym, prereqs)
   end
   prereqs = [prereqs, compile_sym].flatten
   task sym => prereqs do
-    exe = Rake::Task[compile_sym].sources.output
+    exe = delphi_exe(compile_sym)
     Dir.chdir(File.dirname(exe)) do
       system(File.basename(exe))
       fail 'Unit tests failed' unless $CHILD_STATUS.to_i == 0
