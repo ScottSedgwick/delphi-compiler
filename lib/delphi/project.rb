@@ -120,7 +120,9 @@ module Delphi
     end
 
     def subst_path(path)
-      File.join(File.dirname(@dproj), path.sub('$(Platform)', platform).sub('$(Config)', config))
+      result = path.sub('$(Platform)', platform).sub('$(Config)', config)
+      result = File.join(File.dirname(dproj), result) if result.start_with?('.')
+      File.expand_path(result)
     end
   end
 end
